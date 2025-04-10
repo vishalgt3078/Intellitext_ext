@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Dictionary with LLM</title>
+  <style>
+    body {
+      width: 320px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #6366F1, #8B5CF6);
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    .header p {
+      margin: 5px 0 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    
+    .content {
+      padding: 15px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #444;
+    }
+    
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus, .form-group select:focus {
+      border-color: #6366F1;
+      outline: none;
+    }
+    
+    .save-btn {
+      background: linear-gradient(135deg, #6366F1, #8B5CF6);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+    }
+    
+    .save-btn:hover {
+      opacity: 0.9;
+    }
+    
+    .instructions {
+      background-color: #f0f4ff;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 15px;
+    }
+    
+    .instructions h2 {
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      color: #6366F1;
+    }
+    
+    .instructions ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
+    .instructions li {
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+    
+    .status {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 13px;
+      color: #16a34a;
+      height: 20px;
+    }
+    
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 15px;
+    }
+    
+    .tab {
+      padding: 8px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .tab.active {
+      color: #6366F1;
+      border-bottom: 2px solid #6366F1;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .footer {
+      border-top: 1px solid #eee;
+      padding: 10px 15px;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Smart Dictionary with LLM</h1>
+    <p>AI-powered definitions & explanations</p>
+  </div>
+  
+  <div class="tabs">
+    <div class="tab active" data-tab="info">How to Use</div>
+    <div class="tab" data-tab="settings">API Settings</div>
+  </div>
+  
+  <div class="content">
+    <div class="tab-content active" id="info-tab">
+      <div class="instructions">
+        <h2>How to use:</h2>
+        <ol>
+          <li>Select any word or phrase on a webpage</li>
+          <li>A popup will appear with AI-generated information</li>
+          <li>Or right-click and select "Look up" from the menu</li>
+        </ol>
+      </div>
+      
+      <div class="instructions">
+        <h2>Features:</h2>
+        <ol>
+          <li>For single words: definition, synonyms, antonyms</li>
+          <li>For phrases: simplified explanations</li>
+          <li>Context-aware understanding</li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="tab-content" id="settings-tab">
+      <div class="form-group">
+        <label for="api-key">Hugging Face API Key:</label>
+        <input type="password" id="api-key" placeholder="Enter your API key">
+      </div>
+      
+      <div class="form-group">
+        <label for="model-name">LLM Model:</label>
+        <select id="model-name">
+          <option value="mistralai/Mistral-7B-Instruct-v0.2">Mistral 7B Instruct</option>
+          <option value="google/gemma-7b-it">Gemma 7B</option>
+          <option value="meta-llama/Llama-2-7b-chat-hf">Llama 2 7B Chat</option>
+          <option value="microsoft/phi-2">Phi-2</option>
+        </select>
+      </div>
+      
+      <button class="save-btn" id="save-settings">Save Settings</button>
+      <div class="status" id="status-message"></div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <p>Powered by Hugging Face LLM models</p>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

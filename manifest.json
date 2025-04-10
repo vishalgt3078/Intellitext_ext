@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "IntelliText",
+    "version": "1.0",
+    "description": "Get AI-powered definitions, synonyms, antonyms, and explanations for selected words or phrases",
+    "permissions": ["contextMenus", "storage", "activeTab"],
+    "host_permissions": ["https://api.huggingface.co/*"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+      "16": "images/image16.png",
+      "48": "images/image16.png",
+      "128": "images/image16.png"
+    },
+    "icons": {
+      "16": "images/image16.png",
+      "48": "images/image16.png",
+      "128": "images/image16.png"
+    }
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "css": ["content.css"]
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
+    }
+  }
+  
