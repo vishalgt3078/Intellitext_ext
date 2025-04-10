@@ -146,8 +146,6 @@ function getSurroundingText(selection, charCount) {
 }
 
 async function fetchLLMData(text, context = "") {
-    // const apiKey = "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";
-    // const modelName = "mistralai/Mistral-7B-Instruct-v0.1";
     const { apiKey, modelName } = await chrome.storage.local.get(["apiKey", "modelName"]);
     
     if (!apiKey) {
